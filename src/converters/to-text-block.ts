@@ -5,7 +5,7 @@ import {toList} from "./to-list";
 import {toCodeBlock} from "./to-code-block";
 import {toTable} from "./to-table";
 import {hashHtmlBlock} from "../service/hash-html-block";
-import {toParagrapgh} from "./to-paragrapgh";
+import {toParagraph} from "./to-paragraph";
 
 export function toTextBlock(text: string) {
 
@@ -25,7 +25,7 @@ export function toTextBlock(text: string) {
     // we're escaping the markup we've just created, so that we don't wrap
     // <p> tags around block-level tags.
     text = hashHtmlBlock(text);
-    text = toParagrapgh(text);
+    text = toParagraph(text);
 
     return text;
 }

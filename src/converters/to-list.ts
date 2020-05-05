@@ -2,7 +2,7 @@ import {toOutDent} from "./to-out-dent";
 import {toGitHubCodeBlock} from "./to-github-code-block";
 import {toTextBlock} from "./to-text-block";
 import {hashHtmlBlock} from "../service/hash-html-block";
-import {toParagrapgh} from "./to-paragrapgh";
+import {toParagraph} from "./to-paragraph";
 
 export function toList(text: string): string{
 
@@ -69,7 +69,7 @@ export function toList(text: string): string{
                 item = item.replace(/\n\n+/g, '\n\n');
 
                 if (isParagraphed) {
-                    item = toParagrapgh(item);
+                    item = toParagraph(item);
                 } else {
                     item = toTextBlock(item);
                 }
