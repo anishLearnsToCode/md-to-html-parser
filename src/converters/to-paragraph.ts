@@ -1,5 +1,5 @@
 import {toTextBlock} from "./to-text-block";
-import {encodeCode} from "../service/encode-code";
+import {getHtmlBlock} from "../service/get-html-block";
 
 export function toParagraph(text: string): string {
     let i;
@@ -14,7 +14,7 @@ export function toParagraph(text: string): string {
     for (i = 0; i < end; i++) {
         let str = graft[i];
         // if this is an HTML marker, copy it
-        if (str.search(/¨(K|G)(\d+)\1/g) >= 0) {
+        if (str.search(/¨([KG])(\d+)\1/g) >= 0) {
             graftOut.push(str);
 
             // test for presence of characters to prevent empty lines being parsed
@@ -41,19 +41,12 @@ export function toParagraph(text: string): string {
             const num = RegExp.$2;
 
             if (delimiter === 'K') {
-                blockText = globals.gHtmlBlocks[num];
-            } else {
-                // we need to check if ghBlock is a false positive
-                if (flag) {
-                    // use encoded version of all text
-                    blockText = encodeCode(globals.ghCodeBlocks[num].text);
-                } else {
-                    blockText = globals.ghCodeBlocks[num].codeblock;
-                }
+                blockText = getHtmlBlock()[num];
             }
+
             blockText = blockText.replace(/\$/g, '$$$$'); // Escape any dollar signs
 
-            graftOutElement = graftOutElement.replace(/(\n\n)?¨(K|G)\d+\2(\n\n)?/, blockText);
+            graftOutElement = graftOutElement.replace(/(\n\n)?¨([KG])\d+\2(\n\n)?/, blockText);
             // Check if graftOutElement is a pre->code
             if (/^<pre\b[^>]*>\s*<code\b[^>]*>/.test(graftOutElement)) {
                 flag = true;
