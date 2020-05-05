@@ -5,6 +5,6 @@ export function toHorizontalRule(text: string): string {
     text = text.replace(/^ {0,2}( ?-){3,}[ \t]*$/gm, key);
     text = text.replace(/^ {0,2}( ?\*){3,}[ \t]*$/gm, key);
     text = text.replace(/^ {0,2}( ?_){3,}[ \t]*$/gm, key);
-    
+
     return text;
 }
