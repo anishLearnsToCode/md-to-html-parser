@@ -9,10 +9,6 @@ export function toBlockQuotes(text: string): string {
 
     let regex = /(^ {0,3}>[ \t]?.+\n(.+\n)*\n*)+/gm;
 
-    if (options.splitAdjacentBlockquotes) {
-        regex = /^ {0,3}>[\s\S]*?(?:\n\n)/gm;
-    }
-
     text = text.replace(regex, (blockQuote) => {
         blockQuote = blockQuote.replace(/^[ \t]*>[ \t]?/gm, ''); // trim one level of quoting
 
