@@ -4,7 +4,7 @@ import {toTextBlock} from "./to-text-block";
 import {hashHtmlBlock} from "../service/hash-html-block";
 import {toParagraph} from "./to-paragraph";
 
-export function toList(text: string): string{
+export function toList(text: string): string {
 
     /**
      * Process the contents of a single ordered or unordered list, splitting it
